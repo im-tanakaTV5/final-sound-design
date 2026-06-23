@@ -203,19 +203,35 @@ function initReservationForm() {
       statusEl.textContent = '';
     }
 
-    setTimeout(() => {
-      if (submitBtn) submitBtn.disabled = false;
-      if (btnText) btnText.hidden = false;
-      if (btnLoading) btnLoading.hidden = true;
-
-      if (statusEl) {
-        statusEl.className = 'form-status success';
-        statusEl.textContent = 'ご予約を承りました。2営業日以内にご連絡いたします。';
-        statusEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-
-      form.reset();
-    }, 1200);
+    fetch('https://formspree.io/f/xykaynvb', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    })
+      .then(res => {
+        if (res.ok) {
+          if (statusEl) {
+            statusEl.className = 'form-status success';
+            statusEl.textContent = 'ご予約を承りました。2営業日以内にご連絡いたします。';
+            statusEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+          form.reset();
+        } else {
+          return res.json().then(data => { throw new Error(data.error || 'error'); });
+        }
+      })
+      .catch(() => {
+        if (statusEl) {
+          statusEl.className = 'form-status error';
+          statusEl.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
+          statusEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      })
+      .finally(() => {
+        if (submitBtn) submitBtn.disabled = false;
+        if (btnText) btnText.hidden = false;
+        if (btnLoading) btnLoading.hidden = true;
+      });
   });
 }
 

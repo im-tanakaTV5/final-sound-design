@@ -22,8 +22,13 @@
   --color-error:       #e05555;
   --color-success:     #55c899;
 
-  --font-body: 'Noto Sans JP', 'Inter', sans-serif;
-  --font-display: 'Inter', 'Noto Sans JP', sans-serif;
+  --font-body:      'Noto Sans JP', 'Inter', sans-serif;
+  --font-display:   'Cormorant Garamond', 'Noto Serif JP', serif;
+  --font-heading-en: 'Playfair Display', 'Bodoni Moda', serif;
+  --font-serif-jp:  'Noto Serif JP', serif;
+  --font-mincho:    'Zen Old Mincho', serif;
+  --font-sans:      'Inter', 'Cabin', sans-serif;
+  --font-garamond:  'EB Garamond', serif;
 
   --radius-sm:  4px;
   --radius-md:  8px;
@@ -515,13 +520,17 @@ button {
   margin-bottom: 2rem;
 }
 
-.hero-logo {
-  max-width: 260px;
-  width: 100%;
-  margin-inline: auto;
-  opacity: 0.9;
-  filter: drop-shadow(0 0 24px rgba(200,169,110,0.25));
+.hero-brand-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 6vw, 4.2rem);
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  color: var(--color-white);
+  text-shadow:
+    0 0 40px rgba(200, 169, 110, 0.35),
+    0 0 80px rgba(200, 169, 110, 0.15);
   animation: fadeInDown 1s ease both;
+  line-height: 1.2;
 }
 
 .hero-tagline {
@@ -1179,7 +1188,7 @@ button {
     padding-block: 8rem;
   }
 
-  .hero-logo {
-    max-width: 320px;
+  .hero-brand-name {
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
   }
 }
