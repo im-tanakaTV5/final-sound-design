@@ -22,23 +22,8 @@
   --color-error:       #e05555;
   --color-success:     #55c899;
 
-  --font-body:      'Noto Sans JP', 'Inter', sans-serif;
+  --font-body:      'Noto Sans JP', sans-serif;
   --font-display:   'Cormorant Garamond', 'Noto Serif JP', serif;
-  --font-heading-en: 'Playfair Display', 'Bodoni Moda', serif;
-  --font-serif-jp:  'Noto Serif JP', serif;
-  --font-mincho:    'Zen Old Mincho', serif;
-  --font-sans:      'Inter', 'Cabin', sans-serif;
-  --font-garamond:  'EB Garamond', serif;
-
-  --radius-sm:  4px;
-  --radius-md:  8px;
-  --radius-lg:  16px;
-  --radius-xl:  24px;
-
-  --shadow-sm:  0 2px 8px rgba(0,0,0,0.4);
-  --shadow-md:  0 4px 20px rgba(0,0,0,0.6);
-  --shadow-lg:  0 8px 40px rgba(0,0,0,0.8);
-  --shadow-accent: 0 0 24px rgba(200,169,110,0.2);
 
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -102,7 +87,6 @@ button {
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
-  border-radius: var(--radius-sm);
 }
 
 /* ============================================================
@@ -176,14 +160,13 @@ button {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.85rem 2rem;
-  border-radius: var(--radius-md);
+  padding: 0.95rem 2.25rem;
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.06em;
+  border: 1px solid transparent;
   transition: background-color var(--transition), color var(--transition),
-              border-color var(--transition), box-shadow var(--transition),
-              transform var(--transition);
+              border-color var(--transition), transform var(--transition);
   white-space: nowrap;
 }
 
@@ -196,14 +179,14 @@ button {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+  background: var(--color-accent);
+  border-color: var(--color-accent);
   color: #000;
-  box-shadow: 0 4px 16px rgba(200,169,110,0.3);
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #d4b97a, var(--color-accent));
-  box-shadow: 0 6px 24px rgba(200,169,110,0.45);
+  background: #d8bd86;
+  border-color: #d8bd86;
 }
 
 .btn-primary:focus-visible {
@@ -219,7 +202,6 @@ button {
 .btn-ghost:hover {
   border-color: var(--color-accent);
   color: var(--color-accent);
-  box-shadow: 0 0 16px rgba(200,169,110,0.1);
 }
 
 /* ============================================================
@@ -235,12 +217,12 @@ button {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--color-border);
-  transition: background var(--transition), box-shadow var(--transition);
+  transition: background var(--transition), border-color var(--transition);
 }
 
 .site-header.scrolled {
   background: rgba(8,8,8,0.97);
-  box-shadow: var(--shadow-md);
+  border-bottom-color: var(--color-accent-dark);
 }
 
 .header-inner {
@@ -309,10 +291,9 @@ button {
 }
 
 .nav-link--cta {
-  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+  background: var(--color-accent);
   color: #000 !important;
   padding: 0.5rem 1.25rem;
-  border-radius: var(--radius-sm);
   letter-spacing: 0.08em;
 }
 
@@ -331,7 +312,6 @@ button {
   flex-direction: column;
   gap: 5px;
   padding: 6px;
-  border-radius: var(--radius-sm);
   transition: opacity var(--transition);
 }
 
@@ -344,7 +324,6 @@ button {
   width: 24px;
   height: 2px;
   background: var(--color-text);
-  border-radius: 2px;
   transition: transform var(--transition), opacity var(--transition);
 }
 
@@ -418,10 +397,7 @@ button {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(200,169,110,0.06) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(200,169,110,0.04) 0%, transparent 60%),
-    linear-gradient(180deg, #0a0a0a 0%, var(--color-bg) 100%);
+  background: var(--color-bg-2);
   pointer-events: none;
 }
 
@@ -444,12 +420,7 @@ button {
 .hero-video-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.55) 0%,
-    rgba(0,0,0,0.35) 50%,
-    rgba(0,0,0,0.65) 100%
-  );
+  background: rgba(0,0,0,0.55);
   pointer-events: none;
 }
 
@@ -471,7 +442,6 @@ button {
   gap: 0.75rem;
   padding: 2rem 2.5rem;
   border: 1.5px dashed rgba(200,169,110,0.45);
-  border-radius: var(--radius-xl);
   background: rgba(0,0,0,0.35);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
@@ -526,9 +496,6 @@ button {
   font-weight: 300;
   letter-spacing: 0.22em;
   color: var(--color-white);
-  text-shadow:
-    0 0 40px rgba(200, 169, 110, 0.35),
-    0 0 80px rgba(200, 169, 110, 0.15);
   animation: fadeInDown 1s ease both;
   line-height: 1.2;
 }
@@ -625,14 +592,13 @@ button {
 .feature-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
   padding: 1.75rem;
-  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+  transition: border-color var(--transition), background-color var(--transition), transform var(--transition);
 }
 
 .feature-card:hover {
   border-color: var(--color-accent);
-  box-shadow: var(--shadow-accent);
+  background: var(--color-surface-2);
   transform: translateY(-4px);
 }
 
@@ -671,7 +637,7 @@ button {
   max-width: 860px;
   margin-inline: auto;
   height: 1px;
-  background: linear-gradient(to right, transparent, var(--color-border-2), transparent);
+  background: var(--color-border-2);
   margin-block: 3rem;
 }
 
@@ -722,14 +688,13 @@ button {
 .service-item {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+  transition: border-color var(--transition), background-color var(--transition), transform var(--transition);
   overflow: hidden;
 }
 
 .service-item:hover {
   border-color: var(--color-accent);
-  box-shadow: var(--shadow-accent);
+  background: var(--color-surface-2);
   transform: translateY(-3px);
 }
 
@@ -745,7 +710,7 @@ button {
   left: 0;
   width: 3px;
   height: 100%;
-  background: linear-gradient(to bottom, var(--color-accent), transparent);
+  background: var(--color-accent);
   opacity: 0;
   transition: opacity var(--transition);
 }
@@ -803,30 +768,29 @@ button {
   top: 56px;
   width: 1px;
   height: calc(100% - 56px);
-  background: linear-gradient(to bottom, var(--color-border-2), transparent);
+  background: var(--color-border-2);
 }
 
 .flow-step {
   flex-shrink: 0;
   width: 56px;
   height: 56px;
-  border-radius: 50%;
   border: 1px solid var(--color-border-2);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-display);
-  font-size: 0.75rem;
+  font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   color: var(--color-accent);
   background: var(--color-surface);
-  transition: border-color var(--transition), box-shadow var(--transition);
+  transition: border-color var(--transition), background-color var(--transition);
 }
 
 .flow-item:hover .flow-step {
   border-color: var(--color-accent);
-  box-shadow: var(--shadow-accent);
+  background: var(--color-surface-2);
 }
 
 .flow-content {
@@ -858,14 +822,12 @@ button {
   margin-inline: auto;
   background: transparent;
   border: none;
-  border-radius: 0;
   padding: 0;
 }
 
 .form-status {
   display: none;
   padding: 1rem 1.25rem;
-  border-radius: var(--radius-md);
   font-size: 0.9rem;
   margin-bottom: 1.5rem;
 }
@@ -919,7 +881,6 @@ button {
   background: transparent;
   border: none;
   border-bottom: 1px solid var(--color-border-2);
-  border-radius: 0;
   padding: 0.6rem 0;
   color: var(--color-text);
   font-family: var(--font-body);
@@ -954,7 +915,7 @@ button {
   left: 0;
   width: 0;
   height: 1px;
-  background: linear-gradient(to right, var(--color-accent), var(--color-accent-dark));
+  background: var(--color-accent);
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
 }
@@ -1028,7 +989,6 @@ button {
   width: 20px;
   height: 20px;
   border: 1px solid var(--color-border-2);
-  border-radius: var(--radius-sm);
   background: var(--color-bg-3);
   display: flex;
   align-items: center;
