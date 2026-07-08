@@ -2,8 +2,10 @@
    CSS Custom Properties
    ============================================================ */
 :root {
-  --color-bg:          #080808;
-  --color-bg-2:        #0f0f0f;
+  /* --color-bg はロゴ画像（image/ロゴ画像1.png）の背景の黒 #000000 に合わせている。
+     ロゴが載るヘッダー・フッターで浮かないようにするため純黒に統一。 */
+  --color-bg:          #000000;
+  --color-bg-2:        #0d0d0d;
   --color-bg-3:        #141414;
   --color-surface:     #1a1a1a;
   --color-surface-2:   #222222;
@@ -213,7 +215,7 @@ button {
   inset-inline: 0;
   height: var(--header-h);
   z-index: 100;
-  background: rgba(8,8,8,0.85);
+  background: rgba(0,0,0,0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--color-border);
@@ -221,7 +223,7 @@ button {
 }
 
 .site-header.scrolled {
-  background: rgba(8,8,8,0.97);
+  background: rgba(0,0,0,0.97);
   border-bottom-color: var(--color-accent-dark);
 }
 
@@ -345,7 +347,7 @@ button {
   position: fixed;
   top: var(--header-h);
   inset-inline: 0;
-  background: rgba(8,8,8,0.98);
+  background: rgba(0,0,0,0.98);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--color-border);
@@ -492,9 +494,11 @@ button {
 
 .hero-brand-name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2rem, 6vw, 4.2rem);
+  /* モバイルでも1行に収める（折り返さない）。字間を詰めつつ vw で縮小 */
+  font-size: clamp(1.45rem, 6.4vw, 4.2rem);
   font-weight: 300;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
   color: var(--color-white);
   animation: fadeInDown 1s ease both;
   line-height: 1.2;
@@ -511,7 +515,8 @@ button {
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 6vw, 3.8rem);
+  /* サブコピー。モバイルではやや小さめに */
+  font-size: clamp(1.55rem, 5vw, 3.8rem);
   font-weight: 700;
   line-height: 1.25;
   letter-spacing: 0.01em;
@@ -1116,6 +1121,202 @@ button {
 }
 
 /* ============================================================
+   About — 代表メッセージ
+   ============================================================ */
+.about-message {
+  max-width: 760px;
+  margin-inline: auto;
+  margin-bottom: 3.5rem;
+}
+
+.about-message p {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  line-height: 2;
+  margin-bottom: 1.25rem;
+}
+
+.about-message p:last-child {
+  margin-bottom: 0;
+}
+
+.about-message .about-lead {
+  color: var(--color-accent);
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.about-message .about-signature {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 500;
+  color: var(--color-accent);
+  text-align: center;
+  letter-spacing: 0.12em;
+  margin-block: 1.75rem;
+}
+
+.about-message .about-closing {
+  color: var(--color-accent);
+  font-weight: 500;
+  text-align: center;
+  font-size: 1.1rem;
+  margin-top: 1.5rem;
+}
+
+.about-features {
+  margin-top: 2rem;
+}
+
+/* ============================================================
+   Service — 事業ブロック（02〜05 のテキスト事業）
+   ============================================================ */
+.service-block-body p {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  line-height: 2;
+  margin-bottom: 1rem;
+}
+
+.service-block-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* 古物商許可番号の表示欄 */
+.license-box {
+  margin-top: 1.75rem;
+  border: 1px solid var(--color-border-2);
+  border-left: 3px solid var(--color-accent);
+  background: var(--color-surface);
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.license-label {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.license-value {
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+/* イベント予定ボックス */
+.event-box {
+  margin-top: 1.75rem;
+  border: 1px solid var(--color-border-2);
+  border-left: 3px solid var(--color-accent);
+  background: var(--color-surface);
+  padding: 1.5rem;
+}
+
+.event-box-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 0.5rem;
+}
+
+.event-box-desc {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.event-schedule {
+  border-top: 1px solid var(--color-border);
+  padding-top: 1.25rem;
+}
+
+.event-schedule-label {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 0.6rem;
+}
+
+.event-schedule-name {
+  font-size: 0.95rem;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.event-schedule-title {
+  font-size: 1.05rem;
+  color: var(--color-accent);
+  font-weight: 700;
+  margin-top: 0.25rem;
+}
+
+/* ============================================================
+   事業者情報
+   ============================================================ */
+.business-info {
+  background: var(--color-bg-2);
+  border-top: 1px solid var(--color-border);
+}
+
+.info-list {
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+.info-row {
+  display: flex;
+  gap: 1.25rem;
+  padding-block: 1.1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-term {
+  flex-shrink: 0;
+  width: 7em;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--color-accent);
+  padding-top: 0.15rem;
+}
+
+.info-desc {
+  flex: 1;
+  font-size: 0.92rem;
+  color: var(--color-text);
+  line-height: 1.8;
+}
+
+.info-desc[data-placeholder="仮"] {
+  color: var(--color-text-muted);
+}
+
+.info-link {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity var(--transition);
+}
+
+.info-link:hover {
+  opacity: 0.8;
+}
+
+/* ============================================================
    Responsive — Tablet & Desktop
    ============================================================ */
 @media (min-width: 768px) {
@@ -1150,5 +1351,6 @@ button {
 
   .hero-brand-name {
     font-size: clamp(2.8rem, 5vw, 4.2rem);
+    letter-spacing: 0.22em;
   }
 }

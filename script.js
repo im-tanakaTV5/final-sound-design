@@ -86,7 +86,7 @@ function initMobileNav() {
 /* ---- Scroll reveal ---- */
 function initScrollReveal() {
   const elements = document.querySelectorAll(
-    '.feature-card, .service-item, .flow-item, .about-text, .about-features, .service-block'
+    '.feature-card, .service-item, .flow-item, .about-message, .about-features, .service-block'
   );
 
   elements.forEach(el => el.classList.add('reveal'));
