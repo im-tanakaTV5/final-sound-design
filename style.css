@@ -1301,10 +1301,6 @@ button {
   line-height: 1.8;
 }
 
-.info-desc[data-placeholder="仮"] {
-  color: var(--color-text-muted);
-}
-
 .info-link {
   color: var(--color-accent);
   text-decoration: underline;
