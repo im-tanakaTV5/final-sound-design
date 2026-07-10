@@ -1092,6 +1092,17 @@ button {
   transform: translateY(0);
 }
 
+/* スマホ幅だけで効かせる追い改行。PCでは消しておく */
+br.mobile-break {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  br.mobile-break {
+    display: inline;
+  }
+}
+
 /* About — 代表メッセージ */
 .about-message {
   max-width: 700px;
