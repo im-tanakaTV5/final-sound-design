@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initReservationForm();
     initCopyrightYear();
   } catch (err) {
-    // Silent fail — UI still works without JS enhancements
+    // ここで拾って握りつぶす。JSが動かなくてもUI自体は崩れない作り
   }
 });
 
@@ -32,7 +32,7 @@ function initHeroVideo() {
   });
 
   video.play().catch(() => {
-    // autoplay blocked — video stays hidden, placeholder remains
+    // 自動再生がブロックされた場合はここに来る。動画は非表示のまま、プレースホルダー表示を維持
   });
 }
 
