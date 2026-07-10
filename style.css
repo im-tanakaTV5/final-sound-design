@@ -1,6 +1,4 @@
-/* ============================================================
-   CSS Custom Properties
-   ============================================================ */
+/* Custom properties */
 :root {
   /* --color-bg はロゴ画像（image/ロゴ画像1.png）の背景の黒 #000000 に合わせている。
      ロゴが載るヘッダー・フッターで浮かないようにするため純黒に統一。 */
@@ -35,9 +33,7 @@
   --header-h: 70px;
 }
 
-/* ============================================================
-   Reset & Base
-   ============================================================ */
+/* Reset & base */
 *,
 *::before,
 *::after {
@@ -83,17 +79,13 @@ button {
   background: none;
 }
 
-/* ============================================================
-   Accessibility: Focus
-   ============================================================ */
+/* Focus */
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
 }
 
-/* ============================================================
-   Reduced Motion
-   ============================================================ */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -105,9 +97,7 @@ button {
   }
 }
 
-/* ============================================================
-   Container
-   ============================================================ */
+/* Container */
 .container {
   width: 100%;
   max-width: var(--container-max);
@@ -115,9 +105,7 @@ button {
   padding-inline: var(--container-pad);
 }
 
-/* ============================================================
-   Sections
-   ============================================================ */
+/* Sections */
 .section {
   padding-block: 6rem;
 }
@@ -154,9 +142,7 @@ button {
   margin-inline: auto;
 }
 
-/* ============================================================
-   Buttons
-   ============================================================ */
+/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -206,9 +192,7 @@ button {
   color: var(--color-accent);
 }
 
-/* ============================================================
-   Header
-   ============================================================ */
+/* Header */
 .site-header {
   position: fixed;
   top: 0;
@@ -381,9 +365,7 @@ button {
   border-bottom: none;
 }
 
-/* ============================================================
-   Hero
-   ============================================================ */
+/* Hero */
 .hero {
   position: relative;
   min-height: 100svh;
@@ -403,7 +385,6 @@ button {
   pointer-events: none;
 }
 
-/* ---- Hero Video ---- */
 .hero-video {
   position: absolute;
   inset: 0;
@@ -426,7 +407,6 @@ button {
   pointer-events: none;
 }
 
-/* ---- Video Placeholder ---- */
 .hero-video-placeholder {
   position: absolute;
   inset: 0;
@@ -475,7 +455,6 @@ button {
   display: none;
 }
 
-/* ---- (keep existing) ---- */
 .hero-particle {
   position: absolute;
   inset: 0;
@@ -556,9 +535,7 @@ button {
   to   { opacity: 1; }
 }
 
-/* ============================================================
-   About
-   ============================================================ */
+/* About */
 .about {
   background: var(--color-bg-2);
   border-top: 1px solid var(--color-border);
@@ -625,9 +602,7 @@ button {
   line-height: 1.7;
 }
 
-/* ============================================================
-   Service
-   ============================================================ */
+/* Service */
 .service {
   background: var(--color-bg);
 }
@@ -742,9 +717,7 @@ button {
   text-align: center;
 }
 
-/* ============================================================
-   Flow
-   ============================================================ */
+/* Flow */
 .flow {
   background: var(--color-bg-2);
   border-top: 1px solid var(--color-border);
@@ -820,9 +793,7 @@ button {
   line-height: 1.8;
 }
 
-/* ============================================================
-   Reservation Form
-   ============================================================ */
+/* Reservation form */
 .reserve {
   background: var(--color-bg);
 }
@@ -1059,9 +1030,7 @@ button {
   transform: none;
 }
 
-/* ============================================================
-   Footer
-   ============================================================ */
+/* Footer */
 .site-footer {
   background: var(--color-bg);
   border-top: 1px solid var(--color-border);
@@ -1111,9 +1080,7 @@ button {
   color: var(--color-text-muted);
 }
 
-/* ============================================================
-   Scroll Reveal
-   ============================================================ */
+/* Scroll reveal */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -1125,9 +1092,7 @@ button {
   transform: translateY(0);
 }
 
-/* ============================================================
-   About — 代表メッセージ
-   ============================================================ */
+/* About — 代表メッセージ */
 .about-message {
   max-width: 700px;
   margin-inline: auto;
@@ -1176,9 +1141,7 @@ button {
   margin-top: 2rem;
 }
 
-/* ============================================================
-   Service — 事業ブロック（02〜05 のテキスト事業）
-   ============================================================ */
+/* Service — 事業ブロック02〜05（テキスト事業）用 */
 .service-block-body {
   max-width: 680px;
   margin-inline: auto;
@@ -1271,9 +1234,7 @@ button {
   margin-top: 0.25rem;
 }
 
-/* ============================================================
-   事業者情報
-   ============================================================ */
+/* 事業者情報 */
 .business-info {
   background: var(--color-bg-2);
   border-top: 1px solid var(--color-border);
@@ -1324,9 +1285,7 @@ button {
   opacity: 0.8;
 }
 
-/* ============================================================
-   Responsive — Tablet & Desktop
-   ============================================================ */
+/* Responsive — tablet & desktop */
 @media (min-width: 768px) {
   :root {
     --container-pad: 2rem;

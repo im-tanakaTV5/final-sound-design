@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-/* ---- Hero video ---- */
 function initHeroVideo() {
   const video = document.getElementById('hero-video');
   const placeholder = document.getElementById('hero-video-placeholder');
@@ -37,7 +36,6 @@ function initHeroVideo() {
   });
 }
 
-/* ---- Header scroll effect ---- */
 function initHeader() {
   const header = document.querySelector('.site-header');
   if (!header) return;
@@ -50,7 +48,6 @@ function initHeader() {
   onScroll();
 }
 
-/* ---- Mobile navigation ---- */
 function initMobileNav() {
   const toggle = document.querySelector('.nav-toggle');
   const nav = document.getElementById('global-nav');
@@ -83,7 +80,6 @@ function initMobileNav() {
   });
 }
 
-/* ---- Scroll reveal ---- */
 function initScrollReveal() {
   const elements = document.querySelectorAll(
     '.feature-card, .service-item, .flow-item, .about-message, .about-features, .service-block'
@@ -108,7 +104,6 @@ function initScrollReveal() {
   elements.forEach(el => observer.observe(el));
 }
 
-/* ---- Reservation form ---- */
 function initReservationForm() {
   const form = document.getElementById('reserve-form');
   if (!form) return;
@@ -235,7 +230,6 @@ function initReservationForm() {
   });
 }
 
-/* ---- Copyright year ---- */
 function initCopyrightYear() {
   const el = document.getElementById('copyright-year');
   if (el) el.textContent = String(new Date().getFullYear());
