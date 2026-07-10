@@ -680,8 +680,11 @@ button {
 .service-block-desc {
   color: var(--color-text-muted);
   font-size: 0.95rem;
-  line-height: 2;
+  line-height: 1.9;
   margin-bottom: 2rem;
+  max-width: 680px;
+  margin-inline: auto;
+  text-align: center;
 }
 
 .service-list {
@@ -729,12 +732,14 @@ button {
   font-weight: 700;
   color: var(--color-white);
   margin-bottom: 0.5rem;
+  text-align: center;
 }
 
 .service-item-desc {
   font-size: 0.83rem;
   color: var(--color-text-muted);
-  line-height: 1.7;
+  line-height: 1.9;
+  text-align: center;
 }
 
 /* ============================================================
@@ -1124,7 +1129,7 @@ button {
    About — 代表メッセージ
    ============================================================ */
 .about-message {
-  max-width: 760px;
+  max-width: 700px;
   margin-inline: auto;
   margin-bottom: 3.5rem;
 }
@@ -1132,8 +1137,9 @@ button {
 .about-message p {
   color: var(--color-text-muted);
   font-size: 0.95rem;
-  line-height: 2;
-  margin-bottom: 1.25rem;
+  line-height: 1.9;
+  margin-bottom: 2.6rem;
+  text-align: center;
 }
 
 .about-message p:last-child {
@@ -1173,11 +1179,17 @@ button {
 /* ============================================================
    Service — 事業ブロック（02〜05 のテキスト事業）
    ============================================================ */
+.service-block-body {
+  max-width: 680px;
+  margin-inline: auto;
+}
+
 .service-block-body p {
   color: var(--color-text-muted);
   font-size: 0.95rem;
-  line-height: 2;
-  margin-bottom: 1rem;
+  line-height: 1.9;
+  margin-bottom: 2.2rem;
+  text-align: center;
 }
 
 .service-block-body p:last-child {
