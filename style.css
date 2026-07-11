@@ -613,14 +613,6 @@ button {
   margin-bottom: 3rem;
 }
 
-.service-divider {
-  max-width: 860px;
-  margin-inline: auto;
-  height: 1px;
-  background: var(--color-border-2);
-  margin-block: 3rem;
-}
-
 .service-block-header {
   display: flex;
   align-items: center;
@@ -666,6 +658,9 @@ button {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1rem;
+  /* 各ボックスを行の高さに引き伸ばさず中身ぴったりにする。
+     これで見出しの上と本文の下の余白がどのボックスも同じになり、縦位置が揃う */
+  align-items: start;
 }
 
 .service-item {
@@ -715,6 +710,77 @@ button {
   color: var(--color-text-muted);
   line-height: 1.9;
   text-align: center;
+}
+
+/* Service — 事業タブ（01〜05を同じ場所で切り替える） */
+.service-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0;
+  margin-inline: auto;
+  margin-bottom: 3.5rem;
+  border-bottom: 1px solid var(--color-border-2);
+}
+
+.service-tab {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.9rem 1.2rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  border-bottom: 2px solid transparent;
+  /* 下線がタブ列全体の罫線とちょうど重なるように1px食い込ませる */
+  margin-bottom: -1px;
+  white-space: nowrap;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.service-tab:hover {
+  color: var(--color-text);
+}
+
+.service-tab-num {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--color-text-faint);
+  transition: color var(--transition);
+}
+
+.service-tab-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.service-tab[aria-selected="true"] {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+.service-tab[aria-selected="true"] .service-tab-label {
+  font-weight: 700;
+}
+
+.service-tab[aria-selected="true"] .service-tab-num {
+  color: var(--color-accent);
+}
+
+.service-tab:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -2px;
+}
+
+.service-panel[hidden] {
+  display: none;
+}
+
+/* 切り替え時にふわっと出す。位置は動かさず不透明度だけ */
+.service-panel {
+  animation: fadeIn 0.35s ease both;
 }
 
 /* Flow */
@@ -1100,6 +1166,24 @@ br.mobile-break {
 @media (max-width: 767px) {
   br.mobile-break {
     display: inline;
+  }
+
+  /* タブが5つ横に並ぶと収まらないので、折り返さず横スクロールの帯にする */
+  .service-tabs {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .service-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .service-tab {
+    flex-shrink: 0;
+    padding: 0.8rem 1.05rem;
   }
 }
 

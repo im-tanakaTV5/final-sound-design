@@ -166,6 +166,27 @@
           <p class="section-desc">当社では様々な【音】に関わる内容に対し、ベストな提案・サービスを行う事業を行っております。<br>弦高、オクターブ、ピックアップ、ナット高さ、フレット関連など、演奏性に直結するあらゆるリペアに対応。楽器本来の弾きやすさを取り戻します。</p>
         </div>
 
+        <div class="service-tabs" role="tablist" aria-label="サービス事業の切り替え">
+          <button type="button" class="service-tab" role="tab" id="tab-repair" aria-selected="true" aria-controls="panel-repair">
+            <span class="service-tab-num" aria-hidden="true">01</span><span class="service-tab-label">リペア＆カスタマイズ</span>
+          </button>
+          <button type="button" class="service-tab" role="tab" id="tab-purchase" aria-selected="false" aria-controls="panel-purchase" tabindex="-1">
+            <span class="service-tab-num" aria-hidden="true">02</span><span class="service-tab-label">楽器購入相談事業</span>
+          </button>
+          <button type="button" class="service-tab" role="tab" id="tab-consignment" aria-selected="false" aria-controls="panel-consignment" tabindex="-1">
+            <span class="service-tab-num" aria-hidden="true">03</span><span class="service-tab-label">中古楽器委託販売事業</span>
+          </button>
+          <button type="button" class="service-tab" role="tab" id="tab-soundproof" aria-selected="false" aria-controls="panel-soundproof" tabindex="-1">
+            <span class="service-tab-num" aria-hidden="true">04</span><span class="service-tab-label">防音室委託販売事業</span>
+          </button>
+          <button type="button" class="service-tab" role="tab" id="tab-events" aria-selected="false" aria-controls="panel-events" tabindex="-1">
+            <span class="service-tab-num" aria-hidden="true">05</span><span class="service-tab-label">イベント事業</span>
+          </button>
+        </div>
+
+        <div class="service-panels">
+
+        <div class="service-panel" id="panel-repair" role="tabpanel" aria-labelledby="tab-repair" tabindex="0">
         <div class="service-block" id="repair">
           <div class="service-block-header">
             <span class="service-number" aria-hidden="true">01</span>
@@ -235,8 +256,9 @@
           </ul>
         </div>
 
-        <div class="service-divider" aria-hidden="true"></div>
+        </div>
 
+        <div class="service-panel" id="panel-purchase" role="tabpanel" aria-labelledby="tab-purchase" tabindex="0" hidden>
         <div class="service-block" id="purchase-consulting">
           <div class="service-block-header">
             <span class="service-number" aria-hidden="true">02</span>
@@ -253,8 +275,9 @@
           </div>
         </div>
 
-        <div class="service-divider" aria-hidden="true"></div>
+        </div>
 
+        <div class="service-panel" id="panel-consignment" role="tabpanel" aria-labelledby="tab-consignment" tabindex="0" hidden>
         <div class="service-block" id="consignment">
           <div class="service-block-header">
             <span class="service-number" aria-hidden="true">03</span>
@@ -276,8 +299,9 @@
           </div>
         </div>
 
-        <div class="service-divider" aria-hidden="true"></div>
+        </div>
 
+        <div class="service-panel" id="panel-soundproof" role="tabpanel" aria-labelledby="tab-soundproof" tabindex="0" hidden>
         <div class="service-block" id="soundproof">
           <div class="service-block-header">
             <span class="service-number" aria-hidden="true">04</span>
@@ -294,8 +318,9 @@
           </div>
         </div>
 
-        <div class="service-divider" aria-hidden="true"></div>
+        </div>
 
+        <div class="service-panel" id="panel-events" role="tabpanel" aria-labelledby="tab-events" tabindex="0" hidden>
         <div class="service-block" id="events">
           <div class="service-block-header">
             <span class="service-number" aria-hidden="true">05</span>
@@ -320,6 +345,9 @@
             </div>
           </div>
         </div>
+        </div>
+
+        </div><!-- /.service-panels -->
       </div>
     </section>
 

@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileNav();
     initHeroVideo();
     initScrollReveal();
+    initServiceTabs();
     initReservationForm();
     initCopyrightYear();
   } catch (err) {
@@ -102,6 +103,51 @@ function initScrollReveal() {
   }, { threshold: 0.12 });
 
   elements.forEach(el => observer.observe(el));
+}
+
+function initServiceTabs() {
+  const tablist = document.querySelector('.service-tabs');
+  if (!tablist) return;
+
+  const tabs = Array.from(tablist.querySelectorAll('.service-tab'));
+  if (!tabs.length) return;
+
+  const panels = tabs.map(tab => document.getElementById(tab.getAttribute('aria-controls')));
+
+  function activate(index, moveFocus) {
+    tabs.forEach((tab, i) => {
+      const selected = i === index;
+      tab.setAttribute('aria-selected', String(selected));
+      tab.tabIndex = selected ? 0 : -1;
+      const panel = panels[i];
+      if (panel) panel.hidden = !selected;
+    });
+
+    // 隠れていたパネルは scroll-reveal が発火しないまま。開いた瞬間に中身を出す
+    const shown = panels[index];
+    if (shown) {
+      shown.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
+    }
+
+    if (moveFocus) tabs[index].focus();
+  }
+
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => activate(i, false));
+
+    tab.addEventListener('keydown', (e) => {
+      let next = null;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (i + 1) % tabs.length;
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (i - 1 + tabs.length) % tabs.length;
+      else if (e.key === 'Home') next = 0;
+      else if (e.key === 'End') next = tabs.length - 1;
+
+      if (next !== null) {
+        e.preventDefault();
+        activate(next, true);
+      }
+    });
+  });
 }
 
 function initReservationForm() {
