@@ -82,11 +82,34 @@ function initMobileNav() {
 }
 
 function initScrollReveal() {
-  const elements = document.querySelectorAll(
-    '.feature-card, .service-item, .flow-item, .about-message, .about-features, .service-block'
-  );
+  // ブロックごと一括で出すと文章がまとめてパッと現れて味気ないので、
+  // 段落単位で拾って順に立ち上がるようにしている
+  const elements = document.querySelectorAll([
+    '.about-message > p',
+    '.about-features',
+    '.feature-card',
+    '.service-block-desc',
+    '.service-block-body > p',
+    '.service-item',
+    '.license-box',
+    '.event-box',
+    '.flow-item',
+    '.info-row'
+  ].join(', '));
+
+  if (!elements.length) return;
 
   elements.forEach(el => el.classList.add('reveal'));
+
+  // 同じ親の中で連番の遅延を振っておく。並んだ要素が同時に入ってきても順に出る
+  const order = new Map();
+  elements.forEach(el => {
+    const parent = el.parentElement;
+    const i = order.get(parent) || 0;
+    order.set(parent, i + 1);
+    const delay = Math.min(i, 5) * 70;
+    if (delay) el.style.transitionDelay = delay + 'ms';
+  });
 
   if (!('IntersectionObserver' in window)) {
     elements.forEach(el => el.classList.add('is-visible'));
