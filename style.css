@@ -678,10 +678,10 @@ button {
 .service-item-inner {
   padding: 1.5rem;
   position: relative;
-  /* 2列のまま横幅が縮むと本文の折り返しが増えて箱が伸びる。一番細くなる2列幅(768px)で
-     ピックアップ交換が収まる高さに合わせ、どの幅でも全箱を同じ高さに揃える */
+  /* 箱の高さはピックアップ交換(本文が一番長い)で決まる。列が広いほど折り返しが減って背が低くなるので、
+     幅の帯ごとに「その帯で本当に要る高さ」だけ取って間延びを防ぐ。ここは2列でも列が十分広い810px以上の値 */
   flex: 1;
-  min-height: 260px;
+  min-height: 210px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1169,6 +1169,13 @@ br.mobile-break {
   display: none;
 }
 
+/* 2列のまま列がやや狭まる帯(タブレット縦〜768px)。ピックアップ交換が1〜2行余計に折り返すので、その分だけ背を上げる */
+@media (max-width: 809px) {
+  .service-item-inner {
+    min-height: 260px;
+  }
+}
+
 @media (max-width: 767px) {
   br.mobile-break {
     display: inline;
@@ -1181,7 +1188,8 @@ br.mobile-break {
   }
 
   .service-item-inner {
-    min-height: 260px;
+    /* 1列にすると列がぐっと広がるので、400px以上ならこの低さで全箱そろう */
+    min-height: 210px;
   }
 
   /* タブが5つ横に並ぶと収まらないので、折り返さず横スクロールの帯にする */
@@ -1203,11 +1211,24 @@ br.mobile-break {
   }
 }
 
-/* iPhone SE級の細い画面だとピックアップ交換の本文がさらに折り返して伸びるので、
-   その分だけ共通の高さを上げて箱を揃え直す（360px以上には効かせない） */
-@media (max-width: 359px) {
+/* スマホ実機の主流(iPhone 390/393)。列が少し細ってピックアップ交換が1行増える */
+@media (max-width: 399px) {
   .service-item-inner {
-    min-height: 312px;
+    min-height: 235px;
+  }
+}
+
+/* iPhone SE(375)やAndroid(360)級。さらにもう1行増える */
+@media (max-width: 379px) {
+  .service-item-inner {
+    min-height: 260px;
+  }
+}
+
+/* 320px前後の極細画面。ピックアップ交換が最大まで折り返すので、その高さに全箱を合わせる */
+@media (max-width: 349px) {
+  .service-item-inner {
+    min-height: 311px;
   }
 }
 
