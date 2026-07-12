@@ -160,6 +160,10 @@ function initServiceTabs() {
   }
 
   tabs.forEach((tab, i) => {
+    // タップするとボタンにフォーカスが入り、iOSがそれを見せようとして縦にもスクロールしてしまう。
+    // タップ由来のフォーカスだけ抑える。キーボードのTab/矢印操作はこれに影響されない
+    tab.addEventListener('mousedown', (e) => e.preventDefault());
+
     tab.addEventListener('click', () => activate(i, false));
 
     tab.addEventListener('keydown', (e) => {

@@ -463,10 +463,12 @@
               aria-describedby="service-type-error"
             >
               <option value="">選択してください</option>
-              <option value="repair">リペア</option>
-              <option value="customize">カスタマイズ</option>
-              <option value="both">リペア＋カスタマイズ</option>
-              <option value="consultation">相談・見積もりのみ</option>
+              <option value="repair">リペア＆カスタマイズ</option>
+              <option value="purchase">楽器購入相談</option>
+              <option value="consignment">中古楽器委託販売</option>
+              <option value="soundproof">防音室委託販売</option>
+              <option value="events">イベント関連</option>
+              <option value="other">その他・相談のみ</option>
             </select>
             <span id="service-type-error" class="form-error" role="alert" aria-live="polite"></span>
           </div>
@@ -477,7 +479,7 @@
               id="message"
               name="message"
               class="form-input form-textarea"
-              placeholder="楽器のメーカー・モデル、現在の状態、ご希望の内容などをできるだけ詳しくお聞かせください。"
+              placeholder="【お持ちの楽器・防音室】&#10;メーカー：&#10;モデル名:&#10;&#10;【要望】"
               rows="5"
               required
               aria-required="true"

@@ -1225,6 +1225,8 @@ br.mobile-break {
     scrollbar-width: none;
     /* 指を離したときにタブの区切りで止まるように。近ければ吸い付く柔らかい挙動 */
     scroll-snap-type: x proximity;
+    /* 端まで横スクロールしても、その勢いがページ縦スクロールに繋がらないようにする */
+    overscroll-behavior: contain;
   }
 
   .service-tabs::-webkit-scrollbar {
