@@ -779,10 +779,6 @@ button {
   border-bottom-color: var(--color-accent);
 }
 
-.service-tab[aria-selected="true"] .service-tab-label {
-  font-weight: 700;
-}
-
 .service-tab[aria-selected="true"] .service-tab-num {
   color: var(--color-accent);
 }
@@ -1227,6 +1223,8 @@ br.mobile-break {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    /* 指を離したときにタブの区切りで止まるように。近ければ吸い付く柔らかい挙動 */
+    scroll-snap-type: x proximity;
   }
 
   .service-tabs::-webkit-scrollbar {
@@ -1236,6 +1234,7 @@ br.mobile-break {
   .service-tab {
     flex-shrink: 0;
     padding: 0.8rem 1.05rem;
+    scroll-snap-align: start;
   }
 }
 
