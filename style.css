@@ -1223,6 +1223,8 @@ br.mobile-break {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    /* 指の動きを横パンだけに固定する。これがないと少し斜めにスワイプしただけでページが縦にも動く */
+    touch-action: pan-x;
     /* 指を離したときにタブの区切りで止まるように。近ければ吸い付く柔らかい挙動 */
     scroll-snap-type: x proximity;
     /* 端まで横スクロールしても、その勢いがページ縦スクロールに繋がらないようにする */
