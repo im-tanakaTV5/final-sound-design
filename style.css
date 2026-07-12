@@ -658,9 +658,6 @@ button {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1rem;
-  /* 各ボックスを行の高さに引き伸ばさず中身ぴったりにする。
-     これで見出しの上と本文の下の余白がどのボックスも同じになり、縦位置が揃う */
-  align-items: start;
 }
 
 .service-item {
@@ -668,6 +665,8 @@ button {
   border: 1px solid var(--color-border);
   transition: border-color var(--transition), background-color var(--transition), transform var(--transition);
   overflow: hidden;
+  /* 中のinnerを箱いっぱいに引き伸ばして、どの箱も同じ高さに揃える */
+  display: flex;
 }
 
 .service-item:hover {
@@ -679,6 +678,13 @@ button {
 .service-item-inner {
   padding: 1.5rem;
   position: relative;
+  /* 全ボックス共通の高さ。一番行数の多いピックアップ交換（本文5行）に合わせて、
+     短い箱は上下に余白を持たせつつテキストを縦中央に置く */
+  flex: 1;
+  min-height: 210px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .service-item-inner::before {
@@ -1166,6 +1172,12 @@ br.mobile-break {
 @media (max-width: 767px) {
   br.mobile-break {
     display: inline;
+  }
+
+  /* スマホは1列で箱が細くなり、本文が余分に折り返す（特にピックアップ交換）。
+     一番長い箱に合わせて共通の高さを引き上げ、全部の箱を同じ高さに揃える */
+  .service-item-inner {
+    min-height: 260px;
   }
 
   /* タブが5つ横に並ぶと収まらないので、折り返さず横スクロールの帯にする */
