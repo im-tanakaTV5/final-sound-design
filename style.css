@@ -719,6 +719,17 @@ button {
   text-align: center;
 }
 
+/* 2列で並ぶ帯（768px以上）で箱の数が奇数だと最後の1個が左に寄って右が空く。
+   その1個だけ両列ぶち抜きにして中央へ。幅は1列分(50%からgapの半分を引く)のままにして間延びさせない。
+   1列に切り替わるスマホ(767px以下)では効かせない＝そっちは全部の箱が単独行なので中央寄せは不要 */
+@media (min-width: 768px) {
+  .service-list > .service-item:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc(50% - 0.5rem);
+  }
+}
+
 /* Service — 事業タブ（01〜05を同じ場所で切り替える） */
 .service-tabs {
   display: flex;
