@@ -1165,6 +1165,19 @@ button {
   transform: translateY(0);
 }
 
+/* 見出しは最初に目に入るので、本文より動きを控えめにして上品に出す */
+.section-label.reveal,
+.section-title.reveal,
+.section-desc.reveal {
+  transform: translateY(18px);
+}
+
+.section-label.reveal.is-visible,
+.section-title.reveal.is-visible,
+.section-desc.reveal.is-visible {
+  transform: translateY(0);
+}
+
 /* スマホ幅だけで効かせる追い改行。PCでは消しておく */
 br.mobile-break {
   display: none;

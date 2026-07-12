@@ -85,6 +85,9 @@ function initScrollReveal() {
   // ブロックごと一括で出すと文章がまとめてパッと現れて味気ないので、
   // 段落単位で拾って順に立ち上がるようにしている
   const elements = document.querySelectorAll([
+    '.section-header > .section-label',
+    '.section-header > .section-title',
+    '.section-header > .section-desc',
     '.about-message > p',
     '.about-features',
     '.feature-card',
@@ -94,7 +97,8 @@ function initScrollReveal() {
     '.license-box',
     '.event-box',
     '.flow-item',
-    '.info-row'
+    '.info-row',
+    '.reserve-form'
   ].join(', '));
 
   if (!elements.length) return;
