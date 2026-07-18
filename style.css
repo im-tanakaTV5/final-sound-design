@@ -230,7 +230,8 @@ button {
 }
 
 .logo-img {
-  height: 58px;
+  /* 横長ロゴ（約3:1）。ヘッダー高70pxに対し高さで決めて比率維持 */
+  height: 64px;
   width: auto;
   object-fit: contain;
 }
@@ -251,7 +252,8 @@ button {
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.12em;
-  color: var(--color-text-muted);
+  /* 無選択でも埋もれないよう本文と同じ明るい白に。ホバー時は純白へ上げて差を出す */
+  color: var(--color-text);
   transition: color var(--transition);
   position: relative;
   padding-bottom: 4px;
@@ -1206,6 +1208,11 @@ br.mobile-break {
 @media (max-width: 767px) {
   br.mobile-break {
     display: inline;
+  }
+
+  /* 横長ロゴは幅を食うので、スマホではハンバーガーとぶつからない高さに落とす */
+  .logo-img {
+    height: 46px;
   }
 
   /* この幅で2列にすると1枠が280px近くまで細って本文が大きく折り返し、箱の高さがばらつく。
