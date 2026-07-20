@@ -16,24 +16,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initHeroVideo() {
   const video = document.getElementById('hero-video');
-  const placeholder = document.getElementById('hero-video-placeholder');
-  if (!video || !placeholder) return;
+  if (!video) return;
 
-  // src が設定されていない場合はプレースホルダーを表示したまま終了
+  // 今は静止画運用。src が空なら動画は出さず、背景の静止画をそのまま見せる
   if (!video.src || video.src === window.location.href) return;
 
+  // 以下は動画に戻したときだけ動く。再生が始まったら動画をフェードインさせる
   video.addEventListener('playing', () => {
     video.classList.add('is-playing');
-    placeholder.classList.add('is-hidden');
   });
 
   video.addEventListener('error', () => {
     video.classList.remove('is-playing');
-    placeholder.classList.remove('is-hidden');
   });
 
   video.play().catch(() => {
-    // 自動再生がブロックされた場合はここに来る。動画は非表示のまま、プレースホルダー表示を維持
+    // 自動再生がブロックされたら動画は出さない。背景の静止画で見せる
   });
 }
 

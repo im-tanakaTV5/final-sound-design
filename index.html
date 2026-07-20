@@ -25,6 +25,9 @@
   <!-- Preload header logo -->
   <link rel="preload" href="image/Web用横長ロゴ.png" as="image">
 
+  <!-- ヒーロー背景の静止画。最初に目に入るLCP要素なので先読みしておく -->
+  <link rel="preload" href="image/ホーム画像候補2.jpg" as="image" fetchpriority="high">
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,7 +63,16 @@
     <section class="hero" aria-label="ヒーローセクション">
       <div class="hero-bg" aria-hidden="true">
 
-        <!-- 背景動画を出すときは下の src に動画パス（mp4推奨・1920×1080以上）を入れる。空のままだと下のプレースホルダーが出る -->
+        <!-- 今は静止画（リペア工房の作業台）を背景に敷いている。ページ最上部＝LCP要素なので head で先読み済み -->
+        <img
+          src="image/ホーム画像候補2.jpg"
+          alt=""
+          class="hero-image"
+          fetchpriority="high"
+          decoding="async"
+        >
+
+        <!-- 動画に戻す場合は下の src に動画パス（mp4推奨・1920×1080以上）を入れるだけ。再生が始まると静止画に重なって動画が前に出る -->
         <video
           id="hero-video"
           class="hero-video"
@@ -69,21 +81,9 @@
           muted
           loop
           playsinline
-          preload="auto"
+          preload="none"
           aria-hidden="true"
         ></video>
-
-        <!-- 動画未設定時のプレースホルダー -->
-        <div class="hero-video-placeholder" id="hero-video-placeholder" aria-hidden="true">
-          <div class="hvp-inner">
-            <svg class="hvp-icon" width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-              <rect x="2" y="10" width="32" height="28" rx="3" stroke="currentColor" stroke-width="2"/>
-              <path d="M34 19l10-6v22l-10-6V19z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-              <circle cx="11" cy="18" r="2" fill="currentColor"/>
-            </svg>
-            <p class="hvp-title">背景動画エリア</p>
-          </div>
-        </div>
 
         <div class="hero-video-overlay" aria-hidden="true"></div>
         <div class="hero-particle" id="particles-container" aria-hidden="true"></div>
