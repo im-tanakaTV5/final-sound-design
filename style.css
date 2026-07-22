@@ -141,6 +141,8 @@ button {
   font-size: 0.95rem;
   max-width: 560px;
   margin-inline: auto;
+  /* 末尾に「す。」だけ残るのを防ぐ。行の長さを揃えて折り返させる */
+  text-wrap: balance;
 }
 
 /* Buttons */
@@ -183,12 +185,16 @@ button {
 }
 
 .btn-ghost {
-  background: transparent;
-  color: var(--color-text);
-  border: 1px solid var(--color-border-2);
+  /* 写真の上だと灰色の細枠が完全に埋もれるので、枠をゴールドの2pxにして中も薄く暗く敷く。
+     枠が1px太る分パディングを削って、隣の「予約する」と高さを揃える */
+  background: rgba(0,0,0,0.45);
+  color: var(--color-white);
+  border: 2px solid rgba(200,169,110,0.8);
+  padding: calc(0.95rem - 1px) calc(2.25rem - 1px);
 }
 
 .btn-ghost:hover {
+  background: rgba(0,0,0,0.6);
   border-color: var(--color-accent);
   color: var(--color-accent);
 }
@@ -417,7 +423,7 @@ button {
   position: absolute;
   inset: 0;
   /* 写真の左上（デスクライトの明るい部分）でも白文字が読めるよう、少し濃いめのベタ暗幕をかぶせる */
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.68);
   pointer-events: none;
 }
 
@@ -497,15 +503,6 @@ button {
   line-height: 1.2;
 }
 
-.hero-tagline {
-  font-family: var(--font-display);
-  font-size: 0.68rem;
-  letter-spacing: 0.4em;
-  color: var(--color-accent);
-  margin-bottom: 1.25rem;
-  animation: fadeInUp 1s 0.2s ease both;
-}
-
 .hero-title {
   font-family: var(--font-display);
   /* サブコピー。モバイルではやや小さめに */
@@ -519,9 +516,13 @@ button {
 }
 
 .hero-sub {
-  font-size: clamp(0.85rem, 2vw, 1rem);
-  color: var(--color-text-muted);
-  line-height: 1.9;
+  /* 背景写真の明るい部分に重なると溶けるので、白＋やや太字＋サイズ大きめで押し切る。
+     グラデーションでの局所減光は使えないので、暗幕(.hero-video-overlay)側も少し濃くしてある */
+  font-size: clamp(0.98rem, 2.6vw, 1.2rem);
+  font-weight: 500;
+  color: var(--color-white);
+  letter-spacing: 0.03em;
+  line-height: 1.85;
   margin-bottom: 2.5rem;
   animation: fadeInUp 1s 0.5s ease both;
 }
@@ -608,6 +609,8 @@ button {
   font-weight: 700;
   color: var(--color-white);
   margin-bottom: 0.5rem;
+  /* 見出しの末尾に1文字だけ落ちるのを防ぐ */
+  text-wrap: balance;
 }
 
 .feature-desc {
@@ -1221,6 +1224,32 @@ br.mobile-break {
     display: inline;
   }
 
+  /* PC幅で入れた素の改行をスマホにそのまま持ち込むと、区切られた行がさらに折り返って
+     末尾の1〜2文字だけが次の行に取り残される。スマホでは素の改行を殺して自然折り返しに任せる。
+     mobile-break はスマホ用の意図した改行なので残す */
+  .service-item-desc br:not(.mobile-break) {
+    display: none;
+  }
+
+  /* 短い説明文は行長を揃えて末尾に1〜2文字だけ残らないように。
+     長い本文は balance が効く行数を超えるので pretty で末尾行だけ面倒を見る。
+     どちらも未対応ブラウザでは無視されるだけ（そのぶんは改行位置の調整で詰めてある） */
+  .service-item-desc,
+  .flow-desc,
+  .about-lead,
+  .feature-desc,
+  .section-desc,
+  .event-box-title,
+  .event-schedule-name {
+    text-wrap: balance;
+  }
+
+  .about-message p:not(.about-lead),
+  .service-block-desc,
+  .service-block-body p {
+    text-wrap: pretty;
+  }
+
   /* 横長ロゴは幅を食うので、スマホではハンバーガーとぶつからない高さに落とす */
   .logo-img {
     height: 46px;
@@ -1232,7 +1261,7 @@ br.mobile-break {
     grid-template-columns: 1fr;
   }
 
-  /* 1列にすると列がぐっと広がるので、460px以上ならベースの158pxで全箱そろう */
+  /* 1列にすると列がぐっと広がるので、410px以上ならベースの158pxで全箱そろう */
 
   /* タブが5つ横に並ぶと収まらないので、折り返さず横スクロールの帯にする */
   .service-tabs {
@@ -1260,24 +1289,18 @@ br.mobile-break {
   }
 }
 
-/* 1列でも横幅が460pxを切ると本文が1行増える帯 */
-@media (max-width: 459px) {
+/* iPhone(390/393)やSE(375)級。1列でもこの幅を切ると本文が1行増える
+   （スマホで素の改行を殺した分、以前より1段ずつ低くて足りるようになった） */
+@media (max-width: 409px) {
   .service-item-inner {
     min-height: 183px;
   }
 }
 
-/* iPhone(390/393)やSE(375)級。さらにもう1行折り返す */
-@media (max-width: 419px) {
+/* 320px級の極細画面。フレット擦り合わせ／ピックアップ交換が最大まで折り返す高さに全箱を合わせる */
+@media (max-width: 324px) {
   .service-item-inner {
     min-height: 208px;
-  }
-}
-
-/* 320px級の極細画面。ピックアップ交換が最大まで折り返す高さに全箱を合わせる */
-@media (max-width: 329px) {
-  .service-item-inner {
-    min-height: 233px;
   }
 }
 
