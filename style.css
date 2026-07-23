@@ -45,6 +45,11 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  /* iOS WebKitは狭い段落を「読みやすいサイズ」に自動拡大することがあり、
+     指定したフォントサイズを無視して文字が膨らみ、単語の途中で折り返る原因になる。
+     文字サイズは常にCSS指定どおりに固定する */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -1292,8 +1297,9 @@ br.mobile-break {
     scrollbar-width: none;
     /* 指の動きを横パンだけに固定する。これがないと少し斜めにスワイプしただけでページが縦にも動く */
     touch-action: pan-x;
-    /* 指を離したときにタブの区切りで止まるように。近ければ吸い付く柔らかい挙動 */
-    scroll-snap-type: x proximity;
+    /* 指を離したときにタブの区切りで止まる「吸い付き」を入れていたが、
+       強くフリックした際の慣性スクロールとスナップ処理がぶつかって帯が上下に震える
+       原因になっていたため撤去。シンプルな自由スクロールの方が安定する */
     /* 端まで横スクロールしても、その勢いがページ縦スクロールに繋がらないようにする */
     overscroll-behavior: contain;
     /* GPU合成レイヤーに乗せてスクロール中の描画を安定させる。
@@ -1308,7 +1314,6 @@ br.mobile-break {
   .service-tab {
     flex-shrink: 0;
     padding: 0.8rem 1.05rem;
-    scroll-snap-align: start;
   }
 }
 
