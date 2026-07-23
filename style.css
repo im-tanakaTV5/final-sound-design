@@ -1228,6 +1228,25 @@ br.mobile-break {
     display: inline;
   }
 
+  /* 番号ボックス(56px)+gap(32px)が本文の左を圧迫し、スマホでは本文カラムが
+     極端に狭くなって単語の途中で折り返っていた。番号を上・本文を下に積んで
+     本文にほぼ画面幅をそのまま使わせる */
+  .flow-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .flow-item:not(:last-child)::after {
+    left: 27px;
+    top: 56px;
+    height: calc(100% - 56px);
+  }
+
+  .flow-content {
+    padding-top: 0;
+  }
+
   /* PC幅で入れた素の改行をスマホにそのまま持ち込むと、区切られた行がさらに折り返って
      末尾の1〜2文字だけが次の行に取り残される。スマホでは素の改行を殺して自然折り返しに任せる。
      mobile-break はスマホ用の意図した改行なので残す */
