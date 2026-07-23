@@ -672,7 +672,7 @@ button {
   margin-bottom: 2rem;
   max-width: 680px;
   margin-inline: auto;
-  text-align: left;
+  text-align: center;
 }
 
 .service-list {
@@ -1366,7 +1366,7 @@ br.mobile-break {
   font-size: 0.95rem;
   line-height: 1.9;
   margin-bottom: 2.2rem;
-  text-align: left;
+  text-align: center;
 }
 
 .service-block-body p:last-child {
