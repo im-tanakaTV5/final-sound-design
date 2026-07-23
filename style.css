@@ -141,8 +141,9 @@ button {
   font-size: 0.95rem;
   max-width: 560px;
   margin-inline: auto;
-  /* 末尾に「す。」だけ残るのを防ぐ。行の長さを揃えて折り返させる */
-  text-wrap: balance;
+  /* 末尾に「す。」だけ残るのを防ぐ。行長を揃える balance だと語の途中で割れるので pretty で */
+  text-wrap: pretty;
+  word-break: auto-phrase;
 }
 
 /* Buttons */
@@ -1231,23 +1232,21 @@ br.mobile-break {
     display: none;
   }
 
-  /* 短い説明文は行長を揃えて末尾に1〜2文字だけ残らないように。
-     長い本文は balance が効く行数を超えるので pretty で末尾行だけ面倒を見る。
-     どちらも未対応ブラウザでは無視されるだけ（そのぶんは改行位置の調整で詰めてある） */
+  /* balance は行の長さを揃えにいくので、日本語だと「左右す／る」のように語の途中で割れるうえ、
+     左揃えの箱では行が短くなって右側だけぽっかり余る。末尾の孤立だけ見てくれる pretty に統一する。
+     auto-phrase は対応ブラウザなら文節の切れ目で折り返してくれる。どちらも未対応なら素通り */
   .service-item-desc,
   .flow-desc,
   .about-lead,
   .feature-desc,
   .section-desc,
   .event-box-title,
-  .event-schedule-name {
-    text-wrap: balance;
-  }
-
+  .event-schedule-name,
   .about-message p:not(.about-lead),
   .service-block-desc,
   .service-block-body p {
     text-wrap: pretty;
+    word-break: auto-phrase;
   }
 
   /* 横長ロゴは幅を食うので、スマホではハンバーガーとぶつからない高さに落とす */
