@@ -742,6 +742,10 @@ button {
   color: var(--color-text-muted);
   line-height: 1.9;
   text-align: center;
+  /* PC・Chromeでは文節で折り返す。スマホの改行は下のmobile-breakで手動指定してるので、
+     ここは対応ブラウザ向けの保険。iOS WebKitでは効かないぶん手動brが効く */
+  text-wrap: pretty;
+  word-break: auto-phrase;
 }
 
 /* 2列で並ぶ帯（768px以上）で箱の数が奇数だと最後の1個が左に寄って右が空く。
@@ -1253,13 +1257,6 @@ br.mobile-break {
 
   .flow-content {
     padding-top: 0;
-  }
-
-  /* PC幅で入れた素の改行をスマホにそのまま持ち込むと、区切られた行がさらに折り返って
-     末尾の1〜2文字だけが次の行に取り残される。スマホでは素の改行を殺して自然折り返しに任せる。
-     mobile-break はスマホ用の意図した改行なので残す */
-  .service-item-desc br:not(.mobile-break) {
-    display: none;
   }
 
   /* balance は行の長さを揃えにいくので、日本語だと「左右す／る」のように語の途中で割れるうえ、
