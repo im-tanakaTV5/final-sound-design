@@ -1302,9 +1302,6 @@ br.mobile-break {
        原因になっていたため撤去。シンプルな自由スクロールの方が安定する */
     /* 端まで横スクロールしても、その勢いがページ縦スクロールに繋がらないようにする */
     overscroll-behavior: contain;
-    /* GPU合成レイヤーに乗せてスクロール中の描画を安定させる。
-       これが無いと慣性スクロール中に帯の下線がサブピクセル単位でちらついて震えて見える */
-    transform: translateZ(0);
   }
 
   .service-tabs::-webkit-scrollbar {
