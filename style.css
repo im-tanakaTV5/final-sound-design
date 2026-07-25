@@ -835,7 +835,10 @@ button {
 
 .flow-list {
   display: grid;
-  gap: 0;
+  /* 項目間の縦の余白。以前はpadding-bottomで作っていたが、ボックスを本文ブロックの
+     縦中央に合わせる（align-items:center）と、接続線の基準を「ボックス中央」に取りたい。
+     padding分だけ50%がズレるのを避けるため、余白はgridのgapで持たせる。 */
+  gap: 2.5rem;
   max-width: 700px;
   margin-inline: auto;
   counter-reset: flow-counter;
@@ -844,29 +847,34 @@ button {
 .flow-item {
   display: flex;
   gap: 2rem;
-  align-items: flex-start;
+  /* 番号ボックスの縦中央を、見出し＋本文ブロックの縦中央に合わせる */
+  align-items: center;
   position: relative;
-  padding-bottom: 2.5rem;
 }
 
-.flow-item:last-child {
-  padding-bottom: 0;
-}
-
+/* 接続線は「このボックスの中央」から「次のボックスの中央」まで引く。
+   ボックスは不透明(--color-surface)で線より前面(z-index)にあるので、
+   線のうちボックスと重なる部分は隠れ、項目間のすき間だけに線が見える。
+   top:50% がボックス中央（gapで余白を持たせているので item高さ=本文高さ）。
+   height は 100%(1項目分)+gap で、ちょうど次のボックス中央に届く。 */
 .flow-item:not(:last-child)::after {
   content: '';
   position: absolute;
   left: calc(28px);
-  top: 56px;
+  top: 50%;
   width: 1px;
-  height: calc(100% - 56px);
+  height: calc(100% + 2.5rem);
   background: var(--color-border-2);
+  z-index: 0;
 }
 
 .flow-step {
   flex-shrink: 0;
   width: 56px;
   height: 56px;
+  /* 接続線より前面に置き、不透明背景で線を隠す（線はボックスの中央同士を結ぶ） */
+  position: relative;
+  z-index: 1;
   border: 1px solid var(--color-border-2);
   display: flex;
   align-items: center;
