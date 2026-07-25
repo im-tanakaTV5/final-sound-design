@@ -1290,6 +1290,11 @@ br.mobile-break {
     flex-wrap: nowrap;
     justify-content: flex-start;
     overflow-x: auto;
+    /* overflow-x:auto を入れると、未指定の overflow-y(visible) はCSS仕様で auto に昇格し、
+       縦にもスクロール可能になる。下線ぶん内容が数px縦にはみ出しているため、高速フリック時に
+       その縦スクロール(ラバーバンド)が一瞬顔を出して「帯が上下に動く」不具合になっていた。
+       このタブはX軸だけ動けばよいので、Y軸を明示的に殺す（タッチでの縦スクロールを無効化）。 */
+    overflow-y: hidden;
     scrollbar-width: none;
     /* 指の動きを横パンだけに固定する。これがないと少し斜めにスワイプしただけでページが縦にも動く */
     touch-action: pan-x;
@@ -1306,6 +1311,10 @@ br.mobile-break {
   .service-tab {
     flex-shrink: 0;
     padding: 0.8rem 1.05rem;
+    /* 下線を1px重ねるためのマイナスマージンが、帯を縦に1pxはみ出させ、
+       それが縦スクロールの実体（高速フリックで上下に動く不具合）になっていた。
+       スマホでは重ねをやめてはみ出しをゼロにする。 */
+    margin-bottom: 0;
   }
 }
 
