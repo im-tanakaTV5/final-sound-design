@@ -1263,7 +1263,6 @@ br.mobile-break {
      左揃えの箱では行が短くなって右側だけぽっかり余る。末尾の孤立だけ見てくれる pretty に統一する。
      auto-phrase は対応ブラウザなら文節の切れ目で折り返してくれる。どちらも未対応なら素通り */
   .service-item-desc,
-  .flow-desc,
   .about-lead,
   .feature-desc,
   .section-desc,
@@ -1289,28 +1288,18 @@ br.mobile-break {
 
   /* 1列にすると列がぐっと広がるので、410px以上ならベースの158pxで全箱そろう */
 
-  /* タブが5つ横に並ぶと収まらないので、折り返さず横スクロールの帯にする */
+  /* 5つを横スクロールの帯にしていたが、スワイプ時に帯が震える／画面からはみ出す原因に
+     なっていた。スマホでは折り返して画面内に全部収める。スクロールが無ければ揺れない。 */
   .service-tabs {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    overflow-x: auto;
-    scrollbar-width: none;
-    /* 指の動きを横パンだけに固定する。これがないと少し斜めにスワイプしただけでページが縦にも動く */
-    touch-action: pan-x;
-    /* 指を離したときにタブの区切りで止まる「吸い付き」を入れていたが、
-       強くフリックした際の慣性スクロールとスナップ処理がぶつかって帯が上下に震える
-       原因になっていたため撤去。シンプルな自由スクロールの方が安定する */
-    /* 端まで横スクロールしても、その勢いがページ縦スクロールに繋がらないようにする */
-    overscroll-behavior: contain;
-  }
-
-  .service-tabs::-webkit-scrollbar {
-    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 0.2rem;
+    border-bottom: none;
   }
 
   .service-tab {
-    flex-shrink: 0;
-    padding: 0.8rem 1.05rem;
+    padding: 0.6rem 0.85rem;
+    margin-bottom: 0;
   }
 }
 
