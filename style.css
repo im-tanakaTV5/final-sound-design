@@ -224,6 +224,19 @@ button {
   border-bottom-color: var(--color-accent-dark);
 }
 
+/* iPad/iPhone(タッチ端末)では position:fixed + backdrop-filter の合成バグで、
+   スクロール中に本文がヘッダーより上（ステータスバー側）へ漏れて表示される。
+   タッチ端末に限りぼかしを切り、背景を完全不透明にしてバグを断つ。
+   マウス環境(PC)はフロストガラスのまま。 */
+@media (pointer: coarse) {
+  .site-header,
+  .site-header.scrolled {
+    background: var(--color-bg);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
 .header-inner {
   height: 100%;
   display: flex;
@@ -1202,8 +1215,9 @@ button {
 /* Scroll reveal */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity var(--transition-slow), transform var(--transition-slow);
+  transform: translateY(20px);
+  /* 出現をキビキビさせる（以前は0.6s）。動きの距離も少し縮めて素早く見せる */
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .reveal.is-visible {

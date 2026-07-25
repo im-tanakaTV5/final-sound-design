@@ -109,7 +109,7 @@ function initScrollReveal() {
     const parent = el.parentElement;
     const i = order.get(parent) || 0;
     order.set(parent, i + 1);
-    const delay = Math.min(i, 5) * 70;
+    const delay = Math.min(i, 4) * 40;
     if (delay) el.style.transitionDelay = delay + 'ms';
   });
 
