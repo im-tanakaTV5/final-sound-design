@@ -886,7 +886,9 @@ button {
 }
 
 .flow-content {
-  padding-top: 0.75rem;
+  /* 見出しの上端を番号ボックスの上端に合わせる。以前は0.75rem下げていて、
+     箱の上端と見出しの間に約12pxの隙間ができていた（PC・スマホ共通の違和感）。 */
+  padding-top: 0;
 }
 
 .flow-title {
