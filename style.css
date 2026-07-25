@@ -1237,26 +1237,13 @@ br.mobile-break {
     display: inline;
   }
 
-  /* 番号ボックス(56px)+gap(32px)が本文の左を圧迫し、スマホでは本文カラムが
-     極端に狭くなって単語の途中で折り返っていた。番号を上・本文を下に積んで
-     本文にほぼ画面幅をそのまま使わせる */
+  /* PC版と同じ横並び（番号=左／本文=右）を維持する。以前スマホだけ番号を上・本文を下に
+     積んでいたが、全幅の本文がフローの縦線をまたいで重なる違和感が出ていた。
+     縦線は左28pxを通り、本文は番号ボックス(56px)の右に置くので線と重ならない。
+     手動改行を撤めて本文が自然に流れるので、狭めのカラムでも語の途中割れは出ない。
+     gapだけ詰めて本文カラムの幅を稼ぐ。 */
   .flow-item {
-    flex-direction: column;
-    /* 縦積みでは align-items が「横幅」を決める。flex-start にすると本文ボックスが
-       中身なりに縮み、brで区切った一番長い行の幅しか無くなって二重に折り返る。
-       stretch のまま伸ばして、本文に列の幅をそのまま使わせる */
-    align-items: stretch;
-    gap: 0.75rem;
-  }
-
-  .flow-item:not(:last-child)::after {
-    left: 27px;
-    top: 56px;
-    height: calc(100% - 56px);
-  }
-
-  .flow-content {
-    padding-top: 0;
+    gap: 1.25rem;
   }
 
   /* balance は行の長さを揃えにいくので、日本語だと「左右す／る」のように語の途中で割れるうえ、
@@ -1288,18 +1275,27 @@ br.mobile-break {
 
   /* 1列にすると列がぐっと広がるので、410px以上ならベースの158pxで全箱そろう */
 
-  /* 5つを横スクロールの帯にしていたが、スワイプ時に帯が震える／画面からはみ出す原因に
-     なっていた。スマホでは折り返して画面内に全部収める。スクロールが無ければ揺れない。 */
+  /* タブが5つ横に並ぶと収まらないので、折り返さず横スクロールの帯にする（この見た目を採用） */
   .service-tabs {
-    flex-wrap: wrap;
-    justify-content: center;
-    row-gap: 0.2rem;
-    border-bottom: none;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scrollbar-width: none;
+    /* 指の動きを横パンだけに固定する。これがないと少し斜めにスワイプしただけでページが縦にも動く */
+    touch-action: pan-x;
+    /* 端まで横スクロールしても、その勢いがページ縦スクロールに繋がらないようにする */
+    overscroll-behavior: contain;
+    /* ※以前ここに transform: translateZ(0) を足していたが、横スクロール中に合成レイヤーの
+       Y位置がフレームごとに丸め直されて帯が縦に震える原因になり得るため外したまま。 */
+  }
+
+  .service-tabs::-webkit-scrollbar {
+    display: none;
   }
 
   .service-tab {
-    padding: 0.6rem 0.85rem;
-    margin-bottom: 0;
+    flex-shrink: 0;
+    padding: 0.8rem 1.05rem;
   }
 }
 
