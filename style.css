@@ -212,29 +212,18 @@ button {
   inset-inline: 0;
   height: var(--header-h);
   z-index: 100;
-  background: rgba(0,0,0,0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  /* iPad/iPhone Safariでは position:fixed + backdrop-filter:blur の組み合わせが、
+     スクロール中に背後の本文をヘッダーより上（ステータスバー側）へ漏らす合成バグを起こす。
+     前回 @media(pointer:coarse) で切ろうとしたが、iPadOS Safariはデスクトップ級を名乗り
+     pointer:coarse にマッチしないため無効だった。ぼかしを完全に廃し、背景も不透明にして断つ。 */
+  background: var(--color-bg);
   border-bottom: 1px solid var(--color-border);
   transition: background var(--transition), border-color var(--transition);
 }
 
 .site-header.scrolled {
-  background: rgba(0,0,0,0.97);
+  background: var(--color-bg);
   border-bottom-color: var(--color-accent-dark);
-}
-
-/* iPad/iPhone(タッチ端末)では position:fixed + backdrop-filter の合成バグで、
-   スクロール中に本文がヘッダーより上（ステータスバー側）へ漏れて表示される。
-   タッチ端末に限りぼかしを切り、背景を完全不透明にしてバグを断つ。
-   マウス環境(PC)はフロストガラスのまま。 */
-@media (pointer: coarse) {
-  .site-header,
-  .site-header.scrolled {
-    background: var(--color-bg);
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
-  }
 }
 
 .header-inner {
