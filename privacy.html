@@ -64,6 +64,10 @@
       flex-direction: column;
       gap: 0.4rem;
     }
+    /* 本文（段落）の直後に箇条書きが来る項目は、間に1行分の余白を空ける */
+    .privacy-section p + ul {
+      margin-top: 1.6rem;
+    }
     .privacy-back {
       display: inline-flex;
       align-items: center;
